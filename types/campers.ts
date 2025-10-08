@@ -16,13 +16,26 @@ export interface Campers {
   microwave: boolean;
   gas: boolean;
   water: boolean;
-}
-
-export interface DetailsCampers {
   form: string;
   length: string;
   width: string;
   height: string;
   tank: string;
   consumption: string;
+
+  gallery: GalleryImg[];
 }
+
+export interface GalleryImg {
+  thumb: string;
+  original: string;
+}
+
+// export interface DetailsCampers {
+//   form: string;
+//   length: string;
+//   width: string;
+//   height: string;
+//   tank: string;
+//   consumption: string;
+// }

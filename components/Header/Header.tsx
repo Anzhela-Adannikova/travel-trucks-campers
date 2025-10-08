@@ -6,7 +6,9 @@ const Header = () => {
   return (
     <header className={css.header}>
       <Link href="/" className={css.headerLink}>
-        TravelTruck
+        <svg>
+          <use href="/icons/logo.svg#icon-Logo" />
+        </svg>
       </Link>
       <nav>
         <ul>

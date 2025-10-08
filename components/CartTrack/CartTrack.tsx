@@ -1,9 +1,4 @@
-// сторінка каталогу з фільтрами, списком кемперів, пагінаціє
-// app/catalog/page.tsx
-// — головна сторінка каталогу
-// — отримує initial campers (через SSR)
-// — підключає компонент CatalogClient
-
+// деталі кемперу, картка
 // app/catalog/CatalogClient.tsx
 // — Client Component (з "use client")
 // — зберігає стан фільтрів і сторінки (через useState або TanStack Query)
