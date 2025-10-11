@@ -1,6 +1,6 @@
 import Link from "next/link";
 import css from "./Header.module.css";
-import Catalog from "../Catalog/Catalog";
+// import Catalog from "../Catalog/Catalog";
 
 const Header = () => {
   return (
@@ -16,7 +16,7 @@ const Header = () => {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Catalog />
+            <Link href="/catalog">Catalog</Link>
           </li>
         </ul>
       </nav>
