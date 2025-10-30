@@ -6,17 +6,21 @@ const Header = () => {
   return (
     <header className={css.header}>
       <Link href="/" className={css.headerLink}>
-        <svg>
+        <svg width="136" height="16">
           <use href="/icons/logo.svg#icon-Logo" />
         </svg>
       </Link>
-      <nav>
+      <nav className={css.headerNav}>
         <ul>
           <li>
-            <Link href="/">Home</Link>
+            <Link href="/" className={css.link}>
+              Home
+            </Link>
           </li>
           <li>
-            <Link href="/catalog">Catalog</Link>
+            <Link href="/catalog" className={css.link}>
+              Catalog
+            </Link>
           </li>
         </ul>
       </nav>

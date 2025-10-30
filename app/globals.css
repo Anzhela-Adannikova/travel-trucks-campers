@@ -22,6 +22,13 @@ p {
   margin: 0;
 }
 
+ul,
+ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 /* body {
   color: var(--foreground);
   background: var(--background);
