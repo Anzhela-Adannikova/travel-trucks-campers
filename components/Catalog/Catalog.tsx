@@ -1,32 +1,26 @@
 //SideBar, список кемперів
+
 "use client";
 
-// import { useEffect, useState } from "react";
-// import CartTrack from "../CartTrack/CartTrack";
-// import { getCatalog } from "@/lib/api/serverApi";
-// import { Campers } from "@/types/campers";
+import { Campers } from "@/types/campers";
+import CartTrack from "../CartTrack/CartTrack";
 
-// export default function Catalog() {
-//   const [campers, setCampers] = useState([]);
-//   const [page, setPage] = useState(1);
+type Props = {
+  campers: Campers[];
+};
 
-//   useEffect(() => {
-//     getCatalog(page)
-//       .then((data: Campers[]) => {
-//         setCampers((prev) => [...prev, ...data]);
-//       })
-//       .catch((error) => console.error("Error", error));
-//   }, [page]);
+const Catalog = ({ campers }: Props) => {
+  console.log("Rendering Catalog:", campers);
 
-//   return (
-//     <section>
-//       <div>
-//         {campers.map((camper) => (
-//           <CartTrack key={camper.id} camper={camper} />
-//         ))}
-//       </div>
+  return (
+    <ul>
+      {campers.map((camper) => (
+        <li key={camper.id}>
+          <CartTrack item={camper} />
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-//       <button onClick={() => setPage((prev) => prev + 1)}>Load more</button>
-//     </section>
-//   );
-// }
+export default Catalog;

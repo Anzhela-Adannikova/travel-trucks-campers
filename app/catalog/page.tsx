@@ -3,15 +3,31 @@
 // — головна сторінка каталогу
 // — отримує initial campers (через SSR)
 // — підключає компонент CatalogClient
+"use client";
 
+import Catalog from "@/components/Catalog/Catalog";
 import { getCatalog } from "@/lib/api";
+import { Campers } from "@/types/campers";
+import { useState } from "react";
 
-const Catalog = async () => {
-  const carts = await getCatalog();
+const CatalogList = () => {
+  const [campers, setCampers] = useState<Campers[]>([]);
 
-  console.log("carts", carts);
+  const handleClick = async () => {
+    const response = await getCatalog();
+    console.log("response:", response);
+    if (response.items.length > 0) {
+      setCampers(response.items);
+    }
+  };
 
-  return <div>Catalog</div>;
+  return (
+    <section>
+      <h1>-----</h1>
+      <button onClick={handleClick}>Get</button>
+      {campers?.length > 0 && <Catalog campers={campers} />}
+    </section>
+  );
 };
 
-export default Catalog;
+export default CatalogList;

@@ -38,6 +38,11 @@ export interface Campers {
   review: Reviews[];
 }
 
+export interface CampersResponse {
+  total: number;
+  items: Campers[];
+}
+
 export interface CamperPagination {
   page: string;
   limit: string;
