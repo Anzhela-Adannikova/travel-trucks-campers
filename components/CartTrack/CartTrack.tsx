@@ -1,14 +1,14 @@
 import { Campers } from "@/types/campers";
+import Link from "next/link";
 
 type Props = {
   item: Campers;
 };
 const CartTrack = ({ item }: Props) => {
-  console.log("Rendering CartTrack:", item);
   return (
-    <>
-      <p>{item.name}</p>
-    </>
+    <li>
+      <Link href={`/catalog/${item.id}`}>{item.name}</Link>
+    </li>
   );
 };
 
