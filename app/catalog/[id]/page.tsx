@@ -3,7 +3,6 @@ import css from "./CartDetails.module.css";
 import Image from "next/image";
 import CamperFeatures from "@/components/CamperFeatures/CamperFeatures";
 import BookingForm from "@/components/BookingForm/BookingForm";
-import Reviews from "@/components/Reviews/Reviews";
 
 // сторінка конкретного кемпера (деталі, відгуки, бронювання)
 type Props = {
@@ -34,11 +33,13 @@ const CartDetails = async ({ params }: Props) => {
         ) : (
           <p>Img not found</p>
         )}
+
+        <div className={css.description}>
+          <p>{camper.description}</p>
+        </div>
       </div>
 
       <CamperFeatures camper={camper} />
-
-      <Reviews reviews={camper.reviews} />
 
       <BookingForm />
     </section>
