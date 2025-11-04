@@ -20,6 +20,7 @@ const CamperFeatures = ({ camper }: CamperFeaturesProps) => {
           {typeof value === "string" ? value : key}
         </span>
       ))}
+      <h2>Vehicle details</h2>
     </div>
   );
 };

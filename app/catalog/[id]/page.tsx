@@ -2,6 +2,8 @@ import { getCartDetail } from "@/lib/api";
 import css from "./CartDetails.module.css";
 import Image from "next/image";
 import CamperFeatures from "@/components/CamperFeatures/CamperFeatures";
+import BookingForm from "@/components/BookingForm/BookingForm";
+import Reviews from "@/components/Reviews/Reviews";
 
 // сторінка конкретного кемпера (деталі, відгуки, бронювання)
 type Props = {
@@ -9,9 +11,8 @@ type Props = {
 };
 
 const CartDetails = async ({ params }: Props) => {
-  const { id } = params;
+  const { id } = await params;
   const camper = await getCartDetail(id);
-  console.log(camper);
 
   return (
     <section className={css.detailSection}>
@@ -35,9 +36,11 @@ const CartDetails = async ({ params }: Props) => {
         )}
       </div>
 
-      <p className={css.description}>{camper.description}</p>
-
       <CamperFeatures camper={camper} />
+
+      <Reviews reviews={camper.reviews} />
+
+      <BookingForm />
     </section>
   );
 };

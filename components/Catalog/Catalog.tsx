@@ -10,8 +10,6 @@ type Props = {
 };
 
 const Catalog = ({ campers }: Props) => {
-  console.log("Rendering Catalog:", campers);
-
   return (
     <ul>
       {campers.map((camper) => (

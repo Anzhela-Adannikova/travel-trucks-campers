@@ -4,7 +4,7 @@
 // — отримує initial campers (через SSR)
 // — підключає компонент CatalogClient
 // "use client";
-
+// SSR
 import Catalog from "@/components/Catalog/Catalog";
 import { getCatalog } from "@/lib/api";
 // import { Campers } from "@/types/campers";

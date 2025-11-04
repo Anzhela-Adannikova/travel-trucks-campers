@@ -8,6 +8,11 @@ export const getCatalog = async (): Promise<CampersResponse> => {
   return res.data;
 };
 
+export const getCartDetail = async (id: string) => {
+  const res = await axios.get<Campers>(`/campers/${id}`);
+  return res.data;
+};
+
 // const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // export const getCart = async () => {
@@ -15,8 +20,3 @@ export const getCatalog = async (): Promise<CampersResponse> => {
 //   const res = await axios.get<CampersResponse>("/campers");
 //   return res.data;
 // };
-
-export const getCartDetail = async (id: string) => {
-  const res = await axios.get<Campers>(`/campers/${id}`);
-  return res.data;
-};
