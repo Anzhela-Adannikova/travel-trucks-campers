@@ -50,18 +50,14 @@ export interface CamperPagination {
 
 export interface CamperFilter {
   location?: string;
+
   AC?: boolean;
-  bathroom?: boolean;
-  kitchen?: boolean;
+  Automatic?: boolean;
+  Kitchen?: boolean;
   TV?: boolean;
-  radio?: boolean;
-  refrigerator?: boolean;
-  microwave?: boolean;
-  gas?: boolean;
-  water?: boolean;
-  transmission?: string;
-  engine?: string;
-  form?: string;
-  page?: number;
-  limit?: number;
+  Bathroom?: boolean;
+
+  Van?: boolean;
+  FullyIntegrated?: boolean;
+  Alcove?: boolean;
 }
