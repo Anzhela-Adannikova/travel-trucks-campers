@@ -43,11 +43,6 @@ export interface CampersResponse {
   items: Campers[];
 }
 
-export interface CamperPagination {
-  page: string;
-  limit: string;
-}
-
 export interface CamperFilter {
   location?: string;
 
