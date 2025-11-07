@@ -1,5 +1,3 @@
-//SideBar, список кемперів
-
 "use client";
 
 import { Campers } from "@/types/campers";

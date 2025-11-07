@@ -1,6 +1,5 @@
 import Link from "next/link";
 import css from "./Header.module.css";
-// import Catalog from "../Catalog/Catalog";
 
 const Header = () => {
   return (

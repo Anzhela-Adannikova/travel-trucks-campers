@@ -39,9 +39,7 @@ const CamperFeatures = ({ camper }: CamperFeaturesProps) => {
             {featureKeys.map(([key, value]) => (
               <span key={key} className={css.tagItem}>
                 <svg className={css.icon} width="20" height="20" aria-hidden>
-                  <use
-                    href={`/icons/icons.svg#icon-${key.toLowerCase()}`}
-                  ></use>
+                  <use href={`/icons/icons.svg#icon-${key.toLowerCase()}`} />
                 </svg>
                 <span className={css.tagLabel}>
                   {typeof value === "string" ? value : key}

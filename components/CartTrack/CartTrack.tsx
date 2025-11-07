@@ -9,10 +9,12 @@ type Props = {
 };
 
 const CartTrack = ({ item }: Props) => {
+  const features = Object.entries(item).filter(([, value]) => value === true);
+
   return (
-    <article>
+    <article className={css.card}>
       <Link href={`/catalog/${item.id}`}>
-        <div>
+        <div className={css.image}>
           <Image
             src={item.gallery?.[0]?.thumb}
             alt={item.name}
@@ -26,7 +28,8 @@ const CartTrack = ({ item }: Props) => {
           <div className={css.header}>
             <h3 className={css.name}>{item.name}</h3>
             <p className={css.price}>€{item.price.toFixed(2)}</p>
-            <svg className={css.likeHeart} width={26} height={24}>
+
+            <svg className={css.likeHeart} width={26} height={24} aria-hidden>
               <use href={"/icons/icons.svg#icon-heart"}></use>
             </svg>
           </div>
@@ -51,7 +54,19 @@ const CartTrack = ({ item }: Props) => {
           {item.description && (
             <p className={css.description}>{item.description}</p>
           )}
+
+          <div className={css.feature}>
+            {features.map(([key]) => (
+              <span key={key} className={css.tagItem}>
+                <svg className={css.icon} width="20" height="20" aria-hidden>
+                  <use href={`/icons/icons.svg#icon-${key.toLowerCase()}`} />
+                </svg>
+                <span>{key}</span>
+              </span>
+            ))}
+          </div>
         </div>
+
         <Button text="Show more" variant="primary" />
       </Link>
     </article>
