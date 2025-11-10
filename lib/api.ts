@@ -1,13 +1,14 @@
 import { CamperFilter, Campers, CampersResponse } from "@/types/campers";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io";
+// axios.defaults.baseURL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io";
+const BASE_URL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io";
 
 export const getCatalog = async (
   page: number = 1,
   limit: number = 4
 ): Promise<CampersResponse> => {
-  const res = await axios.get<CampersResponse>("/campers", {
+  const res = await axios.get<CampersResponse>(`${BASE_URL}/campers`, {
     params: { page, limit },
   });
 
@@ -15,11 +16,11 @@ export const getCatalog = async (
 };
 
 export const getCartDetail = async (id: string) => {
-  const res = await axios.get<Campers>(`/campers/${id}`);
+  const res = await axios.get<Campers>(`${BASE_URL}/campers/${id}`);
   return res.data;
 };
 
-export const getEilterCampers = async (
+export const getFilteredCampers = async (
   filters?: CamperFilter,
   page: number = 1,
   limit: number = 4
@@ -43,6 +44,13 @@ export const getEilterCampers = async (
   if (filters?.FullyIntegrated) params.FullyIntegrated = "fullyIntegrated";
   if (filters?.Alcove) params.Alcove = "alcove";
 
-  const res = await axios.get<CampersResponse>("/campers", { params });
-  return res.data;
+  try {
+    const res = await axios.get<CampersResponse>(`${BASE_URL}/campers`, {
+      params,
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Помилка при отриманні кемперів:", error);
+    throw error;
+  }
 };

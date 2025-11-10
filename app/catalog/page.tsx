@@ -7,7 +7,7 @@ const CatalogList = async () => {
   const campers = response.items;
 
   return (
-    <section>
+    <section style={{ display: "flex", gap: "64px" }}>
       <SideBar />
       {campers?.length > 0 && <Catalog campers={campers} />}
     </section>

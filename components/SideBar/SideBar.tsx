@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-// import Image from "next/image";
 import css from "./SideBar.module.css";
+import { useCatalogStore } from "@/lib/store/catalogStore";
+import { CamperFilter } from "@/types/campers";
 
 const equipmentList = ["AC", "Automatic", "Kitchen", "TV", "Bathroom"];
 const typeList = ["Van", "Fully Integrated", "Alcove"];
@@ -21,47 +22,42 @@ const vehicalTypeIcons: Record<string, string> = {
   Alcove: "icon-grid_9",
 };
 
-interface SideBarProps {
-  onFilterChange?: (filter: {
-    location: string;
-    equipment: string[];
-    vehicalType: string;
-  }) => void;
-}
-
-const SideBar = ({ onFilterChange }: SideBarProps) => {
+const SideBar = () => {
   const [location, setLocation] = useState("");
   const [equipment, setEquipment] = useState<string[]>([]);
   const [vehicalType, setVehicalType] = useState("");
+
+  const { setFilters, fetchFilteredCampers } = useCatalogStore();
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value);
   };
 
   const handleEquipmentCLick = (item: string) => {
-    if (equipment.includes(item)) {
-      const updatedEquipment = equipment.filter((elemet) => elemet !== item);
-      setEquipment(updatedEquipment);
-    } else {
-      const updatedEquipment = [...equipment, item];
-      setEquipment(updatedEquipment);
-    }
+    setEquipment((prev) =>
+      prev.includes(item) ? prev.filter((el) => el !== item) : [...prev, item]
+    );
   };
 
   const handleTypeClick = (type: string) => {
-    if (vehicalType === type) {
-      setVehicalType("");
-    } else {
-      setVehicalType(type);
-    }
+    setVehicalType((prev) => (prev === type ? "" : type));
   };
 
   const handleSearch = () => {
-    onFilterChange?.({
-      location,
-      equipment,
-      vehicalType,
-    });
+    const filters: CamperFilter = {
+      location: location || undefined,
+      AC: equipment.includes("AC"),
+      Automatic: equipment.includes("Automatic"),
+      Kitchen: equipment.includes("Kitchen"),
+      TV: equipment.includes("TV"),
+      Bathroom: equipment.includes("Bathroom"),
+      Van: vehicalType === "Van",
+      FullyIntegrated: vehicalType === "Fully Integrated",
+      Alcove: vehicalType === "Alcove",
+    };
+
+    setFilters(filters);
+    fetchFilteredCampers();
   };
 
   return (
@@ -76,7 +72,7 @@ const SideBar = ({ onFilterChange }: SideBarProps) => {
         />
       </label>
 
-      <h4 className={css.filer}>Filter</h4>
+      <h4 className={css.filter}>Filter</h4>
 
       {/* Vehicle equipment */}
       <h3 className={css.title}>Vehicle equipment</h3>
@@ -85,7 +81,7 @@ const SideBar = ({ onFilterChange }: SideBarProps) => {
           <li key={item}>
             <button
               type="button"
-              className={equipmentList.includes(item) ? css.active : ""}
+              className={equipment.includes(item) ? css.active : ""}
               onClick={() => handleEquipmentCLick(item)}
             >
               <svg width={32} height={32}>

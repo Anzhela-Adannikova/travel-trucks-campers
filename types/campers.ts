@@ -56,3 +56,9 @@ export interface CamperFilter {
   FullyIntegrated?: boolean;
   Alcove?: boolean;
 }
+
+export interface Filters {
+  location: string;
+  equipment: string[];
+  vehicalType: string;
+}
