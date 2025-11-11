@@ -52,9 +52,7 @@ export interface CamperFilter {
   TV?: boolean;
   Bathroom?: boolean;
 
-  Van?: boolean;
-  FullyIntegrated?: boolean;
-  Alcove?: boolean;
+  form?: "panelTruck" | "fullyIntegrated" | "alcove";
 }
 
 export interface Filters {

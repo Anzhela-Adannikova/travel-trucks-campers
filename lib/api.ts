@@ -40,9 +40,7 @@ export const getFilteredCampers = async (
   if (filters?.TV) params.TV = true;
   if (filters?.Bathroom) params.Bathroom = true;
 
-  if (filters?.Van) params.Van = "van";
-  if (filters?.FullyIntegrated) params.FullyIntegrated = "fullyIntegrated";
-  if (filters?.Alcove) params.Alcove = "alcove";
+  if (filters?.form) params.form = filters.form;
 
   try {
     const res = await axios.get<CampersResponse>(`${BASE_URL}/campers`, {

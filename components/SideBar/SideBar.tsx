@@ -17,9 +17,9 @@ const equipmentIcons: Record<string, string> = {
 };
 
 const vehicalTypeIcons: Record<string, string> = {
-  Van: "icon-grid_3",
-  "Fully Integrated": "icon-grid_9",
-  Alcove: "icon-grid_9",
+  Van: "icon-grid_3", //panelTruck
+  "Fully Integrated": "icon-grid_9", //fullyIntegrated
+  Alcove: "icon-grid_9", //alcove
 };
 
 const SideBar = () => {
@@ -43,21 +43,21 @@ const SideBar = () => {
     setVehicalType((prev) => (prev === type ? "" : type));
   };
 
-  const handleSearch = () => {
-    const filters: CamperFilter = {
-      location: location || undefined,
-      AC: equipment.includes("AC"),
-      Automatic: equipment.includes("Automatic"),
-      Kitchen: equipment.includes("Kitchen"),
-      TV: equipment.includes("TV"),
-      Bathroom: equipment.includes("Bathroom"),
-      Van: vehicalType === "Van",
-      FullyIntegrated: vehicalType === "Fully Integrated",
-      Alcove: vehicalType === "Alcove",
-    };
+  const handleSearch = async () => {
+    const filters: CamperFilter = {};
+    if (location) filters.location = location;
+    if (equipment.includes("AC")) filters.AC = true;
+    if (equipment.includes("Automatic")) filters.Automatic = true;
+    if (equipment.includes("Kitchen")) filters.Kitchen = true;
+    if (equipment.includes("TV")) filters.TV = true;
+    if (equipment.includes("Bathroom")) filters.Bathroom = true;
+
+    if (vehicalType === "Van") filters.form = "panelTruck";
+    if (vehicalType === "Fully Integrated") filters.form = "fullyIntegrated";
+    if (vehicalType === "Alcove") filters.form = "alcove";
 
     setFilters(filters);
-    fetchFilteredCampers();
+    await fetchFilteredCampers();
   };
 
   return (

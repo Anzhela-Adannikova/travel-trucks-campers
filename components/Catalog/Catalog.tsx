@@ -1,39 +1,32 @@
 "use client";
 
-import { Campers } from "@/types/campers";
+import { useCatalogStore } from "@/lib/store/catalogStore";
 import CartTrack from "../CartTrack/CartTrack";
-import { useState } from "react";
-import { getCatalog } from "@/lib/api";
+import { Campers } from "@/types/campers";
 
-type Props = {
-  campers: Campers[];
-};
+interface CatalogProps {
+  initialCampers: Campers[];
+}
 
-const Catalog = ({ campers }: Props) => {
-  const [items, setItems] = useState<Campers[]>(campers);
-  const [page, setPage] = useState(1);
+const Catalog = ({ initialCampers }: CatalogProps) => {
+  const { campers, fetchFilteredCampers, page } = useCatalogStore();
+  const campersToShow = campers.length > 0 ? campers : initialCampers;
 
   const handleLoadMore = async () => {
-    try {
-      const nexPage = page + 1;
-      const response = await getCatalog(nexPage, 4);
-      setItems((prev) => [...prev, ...response.items]);
-      setPage(nexPage);
-    } catch (error) {
-      console.error("Помилка при завантаженні:", error);
-    }
+    await fetchFilteredCampers(undefined, page + 1);
   };
 
   return (
     <>
       <ul>
-        {items.map((camper) => (
+        {campersToShow.map((camper) => (
           <li key={camper.id}>
             <CartTrack item={camper} />
           </li>
         ))}
       </ul>
-      {items.length > 0 && (
+
+      {campersToShow.length > 0 && (
         <button type="button" onClick={handleLoadMore}>
           Load more
         </button>

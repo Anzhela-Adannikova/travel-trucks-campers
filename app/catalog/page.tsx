@@ -9,7 +9,8 @@ const CatalogList = async () => {
   return (
     <section style={{ display: "flex", gap: "64px" }}>
       <SideBar />
-      {campers?.length > 0 && <Catalog campers={campers} />}
+      <Catalog initialCampers={campers} />
+      {/* {campers?.length > 0 && <Catalog campers={campers} />} */}
     </section>
   );
 };
