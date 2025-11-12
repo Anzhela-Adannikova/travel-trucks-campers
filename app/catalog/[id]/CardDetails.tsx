@@ -1,6 +1,6 @@
 // "use client"
 
-import css from "./CartDetails.module.css";
+import css from "./CardDetails.module.css";
 import Image from "next/image";
 import CamperFeatures from "@/components/CamperFeatures/CamperFeatures";
 import BookingForm from "@/components/BookingForm/BookingForm";

@@ -15,7 +15,7 @@ export const getCatalog = async (
   return res.data;
 };
 
-export const getCartDetail = async (id: string) => {
+export const getCardDetail = async (id: string) => {
   const res = await axios.get<Campers>(`${BASE_URL}/campers/${id}`);
   return res.data;
 };

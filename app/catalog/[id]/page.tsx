@@ -1,15 +1,15 @@
-import { getCartDetail } from "@/lib/api";
-import CartDetails from "./CartDetails";
+import { getCardDetail } from "@/lib/api";
+import CardDetails from "./CardDetails";
 
 type Props = {
   params: Promise<{ id: string }>;
 };
 
-const CartPage = async ({ params }: Props) => {
+const CardPage = async ({ params }: Props) => {
   const { id } = await params;
-  const camper = await getCartDetail(id);
+  const camper = await getCardDetail(id);
 
-  return <CartDetails camper={camper} />;
+  return <CardDetails camper={camper} />;
 };
 
-export default CartPage;
+export default CardPage;

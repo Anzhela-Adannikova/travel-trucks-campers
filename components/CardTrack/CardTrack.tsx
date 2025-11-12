@@ -1,7 +1,7 @@
 import { Campers } from "@/types/campers";
 import Link from "next/link";
 import Image from "next/image";
-import css from "./CartTrack.module.css";
+import css from "./CardTrack.module.css";
 import Button from "../Button/Button";
 
 type Props = {
@@ -13,7 +13,7 @@ const CartTrack = ({ item }: Props) => {
 
   return (
     <article className={css.card}>
-      <Link href={`/catalog/${item.id}`}>
+      <div className={css.cardTrack}>
         <div className={css.image}>
           <Image
             src={item.gallery?.[0]?.thumb}
@@ -27,11 +27,13 @@ const CartTrack = ({ item }: Props) => {
         <div className={css.info}>
           <div className={css.header}>
             <h3 className={css.name}>{item.name}</h3>
-            <p className={css.price}>€{item.price.toFixed(2)}</p>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <p className={css.price}>€{item.price.toFixed(2)}</p>
 
-            <svg className={css.likeHeart} width={26} height={24} aria-hidden>
-              <use href={"/icons/icons.svg#icon-heart"}></use>
-            </svg>
+              <svg className={css.likeHeart} width={26} height={24} aria-hidden>
+                <use href={"/icons/icons.svg#icon-heart"}></use>
+              </svg>
+            </div>
           </div>
 
           <div className={css.rating}>
@@ -67,8 +69,12 @@ const CartTrack = ({ item }: Props) => {
           </div>
         </div>
 
-        <Button text="Show more" variant="primary" />
-      </Link>
+        <div className={css.btnWrapper}>
+          <Link href={`/catalog/${item.id}`}>
+            <Button text="Show more" variant="primary" />
+          </Link>
+        </div>
+      </div>
     </article>
   );
 };
